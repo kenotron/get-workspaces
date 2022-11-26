@@ -1,5 +1,6 @@
 const execa = require("execa");
 const path = require("path");
+const fs = require("fs");
 
 const { getWorkspaces: getWorkspacesNodeJS } = require("workspace-tools");
 const { getWorkspaces: getWorkspacesRust } = require("../index");
@@ -7,7 +8,11 @@ const { getWorkspaces: getWorkspacesRust } = require("../index");
 const largeMonorepo = "https://github.com/vsavkin/large-monorepo";
 
 async function main() {
-  await execa("git", ["clone", largeMonorepo, "_tmp"]);
+  const tmpDir = path.join(process.cwd(), "_tmp");
+
+  if (!fs.existsSync(tmpDir)) {
+    await execa("git", ["clone", largeMonorepo, tmpDir]);
+  }
 
   console.time("workspace-tools time");
   getWorkspacesNodeJS(path.join(process.cwd(), "_tmp"));
