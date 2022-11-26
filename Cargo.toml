@@ -1,0 +1,24 @@
+[package]
+edition = "2021"
+name = "get-workspaces"
+version = "0.0.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
+napi = { version = "2.10.1", default-features = false, features = ["napi4"] }
+napi-derive = "2.9.1"
+glob = "0.3.0"
+git2 = "0.15.0"
+serde_json = "1.0.89"
+anyhow = "1.0.66"
+rayon = "1.6.0"
+serde = { version = "1.0", features = ["derive"] }
+
+[build-dependencies]
+napi-build = "2.0.1"
+
+[profile.release]
+lto = true
