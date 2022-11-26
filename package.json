@@ -14,9 +14,8 @@
   "license": "MIT",
   "devDependencies": {
     "@napi-rs/cli": "^2.13.0",
-    "ava": "^4.3.3"
-  },
-  "dependencies": {
+    "ava": "^4.3.3",
+    "execa": "^5.0.0",
     "workspace-tools": "^0.29.1"
   },
   "ava": {
